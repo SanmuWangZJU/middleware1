@@ -158,6 +158,7 @@ public class WriteMessageStore {
                             flag = false;
                             mappedFile.writeCachePage(cachePage);
                             try {
+                                //清理cachepage，以便在producercache中重用
                                 cachePage.clear();
                                 producerCachePoolsMap.get(cachePage.getProducerId()).put(cachePage);
                             } catch (InterruptedException e) {
